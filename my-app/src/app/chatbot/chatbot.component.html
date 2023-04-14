@@ -1,0 +1,17 @@
+<h1>Angular Chat Bot</h1>
+<button (click)="openChatBot()" class="click-button"
+    [ngStyle]="{'background-color':!chatFlag? '#9b4dca' : '#363636' }">Chat</button>
+<div *ngIf="chatFlag" class="chatbox">
+    <h4>Welcome User! How May I help You! </h4>
+    <ng-container *ngFor="let message of messages">
+        <div class="message" [ngClass]="{ 'from': message.author === 'bot',
+        'to': message.author === 'user' }">
+            <span> {{ message.content }} </span>
+        </div>
+    </ng-container>
+    <input [(ngModel)]="inputText" type="text" placeholder="type here">
+    <button (click)="startService() ; value=''">
+        <i class="fa fa-microphone" aria-hidden="true"></i>
+    </button>
+    <button (click)="sendMessage()"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
